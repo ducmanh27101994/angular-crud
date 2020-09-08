@@ -1,0 +1,36 @@
+<br><br>
+<div class="container">
+  <input (keyup)="search($event)" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+<br>
+  <a routerLink="/add" class="btn btn-success">Add Product</a>
+  <br><br>
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Price</th>
+    <th scope="col">Color</th>
+    <th scope="col">Desc</th>
+    <th scope="col">Category</th>
+    <th scope="col" colspan="2">Active</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of products; let i = index ">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{product.name}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.color}}</td>
+    <td>{{product.desc}}</td>
+    <ng-container *ngFor="let category of categorys">
+    <td *ngIf="category.id == product.category_id">{{category.name}}</td>
+    </ng-container>
+    <td><a [routerLink]="[product.id,'edit']" class="btn btn-success">Edit</a></td>
+    <td><a (click)="deleteProduct(product.id)" class="btn btn-danger">Delete</a></td>
+  </tr>
+
+  </tbody>
+</table>
+
+</div>

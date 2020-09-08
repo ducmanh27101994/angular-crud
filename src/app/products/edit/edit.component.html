@@ -1,0 +1,59 @@
+<div class="container">
+  <br><br>
+  <h3>Form Update</h3>
+  <br>
+  <form (ngSubmit)="submitEdit()" [formGroup]="editForm">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name</label>
+      <input formControlName="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div *ngIf="name.invalid && (name.touched || name.dirty)" class="alert alert-danger" role="alert">
+      <div *ngIf="name.errors.required">
+        Tên không được để trống !
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Price</label>
+      <input formControlName="price" type="number" class="form-control">
+    </div>
+    <div *ngIf="price.invalid && (price.touched || price.dirty)" class="alert alert-danger" role="alert">
+      <div *ngIf="price.errors.required">
+        Giá không được để trống !
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Color</label>
+      <input formControlName="color" type="text" class="form-control">
+    </div>
+    <div *ngIf="color.invalid && (color.touched || color.dirty)" class="alert alert-danger" role="alert">
+      <div *ngIf="color.errors.required">
+        Màu không được để trống !
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea formControlName="desc" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <div *ngIf="desc.invalid && (desc.touched || desc.dirty)" class="alert alert-danger" role="alert">
+      <div *ngIf="desc.errors.required">
+        Mô tả không được để trống !
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Category</label>
+      <select class="form-control" formControlName="category_id">
+        <option value="">Chọn:</option>
+
+        <option *ngFor="let category of categorys" value="{{category.id}}">{{category.name}}</option>
+
+      </select>
+    </div>
+
+    <button [disabled]="editForm.invalid" class="btn btn-primary">Submit</button>
+    <button routerLink="" class="btn btn-secondary">Cancel</button>
+  </form>
+</div>
